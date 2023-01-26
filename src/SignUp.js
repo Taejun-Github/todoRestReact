@@ -61,6 +61,7 @@ class SignUp extends React.Component {
                 required
                 fullWidth
                 id="password"
+                type="password"
                 label="패스워드"
               />
             </Grid>

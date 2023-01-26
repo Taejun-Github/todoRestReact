@@ -4,6 +4,8 @@ const ACCESS_TOKEN = "ACCESS_TOKEN";
 export function call(api, method, request) {
   let headers = new Headers({
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*", // Required for CORS support to work
+    "Access-Control-Allow-Credentials": true // Required for cookies, authorization headers 
   })
 
   const accessToken = localStorage.getItem("ACCESS_TOKEN");
@@ -30,7 +32,6 @@ export function call(api, method, request) {
     })
   ).catch((error) => {
     // 403을 받을 경우 로그인 페이지로 자동으로 리다이렉트 한다.
-    alert('아이디와 비밀번호를 확인하세요')
     if (error) {
       window.location.href = "/login";
     }
@@ -46,6 +47,7 @@ export function signin(userDTO) {
       window.location.href = "/";
     }
   })
+  .catch(e => {console.error(e)})
 }
 
 export function signout() {
